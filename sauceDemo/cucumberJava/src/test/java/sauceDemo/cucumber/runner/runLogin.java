@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/java/sauceDemo/cucumber/features",
         glue = "sauceDemo.cucumber.stepDef",
         plugin = {"html:target/HTML_report.html"},
-        tags = "@Negaive"
+        tags = "@Regression"
 )
 public class runLogin {
 }

@@ -17,7 +17,7 @@ public class login {
     String baseUrl = "https://www.saucedemo.com/";
 
     @Given("Halaman login saucedemo")
-    public void halamanLoginSaucedemo() {
+    public void halamanLoginSaucedemo() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -25,28 +25,50 @@ public class login {
     }
 
     @When("Input username")
-    public void inputUsername() {
+    public void inputUsername() throws InterruptedException {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        Thread.sleep(1000);
     }
 
     @And("Input password")
-    public void inputPassword() {
+    public void inputPassword() throws InterruptedException {
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        Thread.sleep(1000);
     }
 
     @And("click login button")
-    public void clickLoginButton() {
+    public void clickLoginButton() throws InterruptedException {
         driver.findElement(By.xpath("//input[@id='login-button']")).click();
+        Thread.sleep(1000);
+    }
+
+    @And("User click add to cart")
+    public void userClickAddToCart() throws InterruptedException {
+        driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-backpack']")).click();
+        Thread.sleep(1000);
+    }
+
+    @And("User view card page")
+    public void userViewCardPage() throws InterruptedException  {
+        driver.findElement(By.xpath("//div[@id='shopping_cart_container']")).click();
+        Thread.sleep(1000);
+    }
+
+    @And("User checkout")
+    public void userCheckout() throws InterruptedException {
+        driver.findElement(By.xpath("//button[@id='checkout']")).click();
+        //quit
+        driver.close();
     }
 
 //    @Then("user in dashboard page")
 //    public void userInDashboardPage() {
 //    }
 
-    @And("Input Invalid password")
-    public void inputInvalidPassword() {
-        driver.findElement(By.id("password")).sendKeys("secret_sauceee");
-    }
+//    @And("Input Invalid password")
+//    public void inputInvalidPassword() {
+//        driver.findElement(By.id("password")).sendKeys("secret_sauceee");
+//    }
 
 //    @Then("User get error message")
 //    public void userGetErrorMessage() {
